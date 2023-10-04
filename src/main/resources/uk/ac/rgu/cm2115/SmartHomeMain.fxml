@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.HBox?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.rgu.cm2115.SmartHomeMainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.rgu.cm2115.SmartHomeMainController">
    <children>
       <ListView fx:id="lstDevices" layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="254.0" />
       <Label fx:id="lblStatusLabel" layoutX="277.0" layoutY="14.0" prefHeight="17.0" prefWidth="118.0" text="Status:" />
       <Label fx:id="lblStatus" layoutX="277.0" layoutY="40.0" prefHeight="37.0" prefWidth="192.0" />
-      <Button fx:id="btnCreateRoutine" layoutX="273.0" layoutY="96.0" mnemonicParsing="false" text="Create a routine" />
+      <Button id="btnCreateRoutine" fx:id="btnCreateRoutine" layoutX="273.0" layoutY="96.0" mnemonicParsing="false" text="Create a routine" />
       <HBox fx:id="hboxRoutines" layoutX="14.0" layoutY="223.0" prefHeight="100.0" prefWidth="578.0" />
    </children>
 </AnchorPane>
