@@ -5,6 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import uk.ac.rgu.cm2115.devices.Device;
+import uk.ac.rgu.cm2115.devices.Light;
+import uk.ac.rgu.cm2115.devices.SmartPlug;
+import uk.ac.rgu.cm2115.devices.Thermostat;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,25 +19,35 @@ import java.util.Map;
  */
 public class MainApp extends Application{
 
-    // used by JavaFX - we'll get to these later!
     private static Scene scene = null;
     private static final Map<String, Object> models = new HashMap<>();
 
     public static void main(String[] args) {
 
-        //JavaFX launch code - we'll get to this later!
+        Device[] devices = new Device[5];
+        
+        devices[0] = new Light("Living room");
+        devices[1] = new SmartPlug("Kettle");
+        devices[2] = new Thermostat("House");
+        devices[3] = new SmartPlug("Laptop");
+        devices[4] = new Light("Kitchen");
+
+        for(int i=0;i<devices.length;i++){
+            // check here the methods available to device[i]
+        }
+
         launch();
     }
 
     @Override
     public void start(Stage stage) throws IOException {
 
-        /*
-         * Change "primary" to the name of the FXML file of your first scene,
-         * and "new Object()" to an object
-         * representing the model class for that scene
-         */
-        MainApp.setScene("SmartHomeMain", new Object());
+        Home home = new Home();
+        home.addDevice(new Light("Living room"));
+        home.addDevice(new SmartPlug("Kettle"));
+        home.addDevice(new Thermostat("Whole house"));
+
+        MainApp.setScene("SmartHomeMain", home);
 
         stage.setScene(scene);
         stage.show();
@@ -96,6 +110,4 @@ public class MainApp extends Application{
 
         MainApp.setScene(fxml, model);
     }
-
-
 }

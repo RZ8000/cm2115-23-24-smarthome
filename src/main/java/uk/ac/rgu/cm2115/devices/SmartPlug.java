@@ -1,7 +1,11 @@
-package uk.ac.rgu.cm2115;
+package uk.ac.rgu.cm2115.devices;
 
-public class SmartPlug {
+public class SmartPlug extends Device {
     
+    public SmartPlug(String name) {
+        super(name);
+    }
+
     public void switchOn(){
         System.out.println("Smart plug is switched on");
     }

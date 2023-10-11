@@ -1,7 +1,11 @@
-package uk.ac.rgu.cm2115;
+package uk.ac.rgu.cm2115.devices;
 
-public class Light {
+public class Light extends Device {
     
+    public Light(String name) {
+        super(name);
+    }
+
     public void turnOn(){
         System.out.println("Light is turned on");
     }
