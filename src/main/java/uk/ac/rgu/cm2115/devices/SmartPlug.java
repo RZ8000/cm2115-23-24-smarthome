@@ -1,17 +1,33 @@
 package uk.ac.rgu.cm2115.devices;
 
-public class SmartPlug extends Device {
+public class SmartPlug extends Device{
     
+    private boolean on;
+
     public SmartPlug(String name) {
         super(name);
+        this.on = false;
     }
 
     public void switchOn(){
         System.out.println("Smart plug is switched on");
+        this.on = true;
     }
 
-    public void swithOff(){
+    public void switchOff(){
         System.out.println("Smart plug is switched off");
+        this.on = false;
+    }
+
+    @Override
+    public String getStatus(){
+        String status = "off";
+
+        if(this.on){
+            status = "on";
+        }
+
+        return this.name + " is " + status;
     }
 
 }
