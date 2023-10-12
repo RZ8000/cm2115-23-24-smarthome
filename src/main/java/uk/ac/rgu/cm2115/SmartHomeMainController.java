@@ -40,7 +40,7 @@ public class SmartHomeMainController extends Controller<Home>{
         Device device = lstDevices.getSelectionModel().getSelectedItem();
 
         if(device != null){
-            this.lblStatus.setText(device.toString());
+            this.lblStatus.setText(device.getStatus());
         }
     }
 
