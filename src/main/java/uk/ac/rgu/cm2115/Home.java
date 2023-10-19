@@ -1,5 +1,6 @@
 package uk.ac.rgu.cm2115;
 
+import uk.ac.rgu.cm2115.commands.Command;
 import uk.ac.rgu.cm2115.devices.Device;
 
 /**
@@ -9,9 +10,11 @@ import uk.ac.rgu.cm2115.devices.Device;
 public class Home {
 
     Device[] devices;
+    Command[] commands;
 
     public Home(){
         this.devices = new Device[5];
+        this.commands = new Command[10];
     }
 
     public void addDevice(Device device){
@@ -21,6 +24,19 @@ public class Home {
                 break;
             }
         }
+    }
+
+    public void addCommand(Command command){
+        for(int i=0;i<this.commands.length;i++){
+            if(commands[i] == null){
+                commands[i] = command;
+                break;
+            }
+        }
+    }
+
+    public Command[] getCommands(){
+        return this.commands;
     }
 
     public Device[] getDevices(){

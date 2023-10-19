@@ -1,6 +1,6 @@
 package uk.ac.rgu.cm2115.devices;
 
-public class SmartPlug extends Device{
+public class SmartPlug extends Device implements Switchable {
     
     private boolean on;
 

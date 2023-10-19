@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import uk.ac.rgu.cm2115.commands.SwitchOffCommand;
+import uk.ac.rgu.cm2115.commands.SwitchOnCommand;
 import uk.ac.rgu.cm2115.devices.Device;
 import uk.ac.rgu.cm2115.devices.Light;
 import uk.ac.rgu.cm2115.devices.SmartPlug;
+import uk.ac.rgu.cm2115.devices.Switchable;
 import uk.ac.rgu.cm2115.devices.Thermostat;
 
 import java.io.IOException;
@@ -24,17 +27,8 @@ public class MainApp extends Application{
 
     public static void main(String[] args) {
 
-        Device[] devices = new Device[5];
-        
-        devices[0] = new Light("Living room");
-        devices[1] = new SmartPlug("Kettle");
-        devices[2] = new Thermostat("House");
-        devices[3] = new SmartPlug("Laptop");
-        devices[4] = new Light("Kitchen");
-
-        for(int i=0;i<devices.length;i++){
-            // check here the methods available to device[i]
-        }
+        Switchable light = new Light("Testing switchable for light");
+        Switchable plug = new SmartPlug("Testing switchable for plug");
 
         launch();
     }
@@ -43,9 +37,19 @@ public class MainApp extends Application{
     public void start(Stage stage) throws IOException {
 
         Home home = new Home();
-        home.addDevice(new Light("Living room"));
-        home.addDevice(new SmartPlug("Kettle"));
-        home.addDevice(new Thermostat("Whole house"));
+
+        Light light = new Light("Living room");
+        SmartPlug plug = new SmartPlug("Kettle");
+
+        home.addDevice(light);
+        home.addDevice(plug);
+
+        home.addCommand(new SwitchOnCommand(light));
+        home.addCommand(new SwitchOffCommand(light));
+
+        home.addCommand(new SwitchOnCommand(plug));
+        home.addCommand(new SwitchOffCommand(plug));
+        
 
         MainApp.setScene("SmartHomeMain", home);
 

@@ -15,4 +15,6 @@ public abstract class Device {
     public String toString(){
         return this.name + " " + this.getClass().getSimpleName();
     }
+
+    public abstract String getStatus();
 }

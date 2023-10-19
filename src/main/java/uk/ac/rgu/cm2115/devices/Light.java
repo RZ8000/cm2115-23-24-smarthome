@@ -1,6 +1,6 @@
 package uk.ac.rgu.cm2115.devices;
 
-public class Light extends Device{
+public class Light extends Device implements Switchable, Dimmable{
     
     private boolean on;
     private int level;
@@ -11,26 +11,34 @@ public class Light extends Device{
         this.level = 0;
     }
 
+    @Override
     public void switchOn(){
         System.out.println("Light is turned on");
         this.on = true;
         this.level = 3;
     }
 
+    @Override
     public void switchOff(){
         System.out.println("Light is turned off");
         this.on = false;
         this.level = 0;
     }
 
+    @Override
     public void dimUp(){
         System.out.println("Light is dimmed up");
         this.level++;
     }
 
+    @Override
     public void dimDown(){
         System.out.println("Light is dimmed down");
         this.level--;
+
+        if(this.level == 0){
+            this.on = false; //could also call switchOff() method - effect is the same
+        }
     }
 
     @Override
