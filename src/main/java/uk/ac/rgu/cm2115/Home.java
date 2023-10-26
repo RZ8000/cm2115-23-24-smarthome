@@ -11,10 +11,17 @@ public class Home {
 
     Device[] devices;
     Command[] commands;
+    String[] commandLabels;
+
+    public String[] getCommandLabels() {
+        return commandLabels;
+    }
+
 
     public Home(){
         this.devices = new Device[5];
         this.commands = new Command[10];
+        this.commandLabels = new String[10];
     }
 
     public void addDevice(Device device){
@@ -26,20 +33,38 @@ public class Home {
         }
     }
 
-    public void addCommand(Command command){
+    public void addCommand(Command command, String commandLabel){
         for(int i=0;i<this.commands.length;i++){
             if(commands[i] == null){
                 commands[i] = command;
                 break;
             }
+            if(commandLabels[i] == null){
+                commandLabels[i] = commandLabel;
+                break;
+            }
         }
     }
+
 
     public Command[] getCommands(){
         return this.commands;
     }
 
+    public Command getCommand(String Label){
+        for (int i=0;i<this.commandLabels.length;i++) {
+            if (commandLabels != null && commandLabels[i].equalsIgnoreCase(Label)) {
+                return this.commands[i];
+            }
+        }
+        return null;
+    }
+
     public Device[] getDevices(){
         return this.devices;
     }
+
+    
+    
+
 }

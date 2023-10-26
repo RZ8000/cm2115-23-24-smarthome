@@ -53,6 +53,11 @@ public class SmartHomeMainController extends Controller<Home>{
             if(commands[i] != null){
                 Button btn = new Button(commands[i].toString());
                 this.hboxRoutines.getChildren().add(btn);
+
+                Command command = commands[i];
+                btn.setOnAction((event) -> {
+                    command.execute();
+                });
             }
         }
 
