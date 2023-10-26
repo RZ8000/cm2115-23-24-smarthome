@@ -33,6 +33,7 @@ public class SmartHomeMainController extends Controller<Home>{
         this.model = model;
 
         Device[] devices = model.getDevices();
+        String[] labels = model.getCommandLabels();
 
         for(int i=0;i<devices.length;i++){
             if(devices[i] != null){
@@ -51,7 +52,7 @@ public class SmartHomeMainController extends Controller<Home>{
 
         for(int i=0;i<commands.length;i++){
             if(commands[i] != null){
-                Button btn = new Button(commands[i].toString());
+                Button btn = new Button(labels[i]);
                 this.hboxRoutines.getChildren().add(btn);
 
                 Command command = commands[i];

@@ -27,12 +27,14 @@ public class Light extends Device implements Switchable, Dimmable{
 
     @Override
     public void dimUp(){
+        this.level ++;
         System.out.println("Light is dimmed up");
         this.level++;
     }
 
     @Override
     public void dimDown(){
+        this.level -=1;
         System.out.println("Light is dimmed down");
         this.level--;
 
@@ -51,4 +53,12 @@ public class Light extends Device implements Switchable, Dimmable{
 
         return this.name + " is " + status + " (level " + this.level + ")";
     }
+
+    public String getStatus() {
+        return "light is " + this.on + " and level is" + this.level;
+    }
+
+ 
+
+    
 }

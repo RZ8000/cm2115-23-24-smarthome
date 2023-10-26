@@ -44,11 +44,11 @@ public class MainApp extends Application{
         home.addDevice(light);
         home.addDevice(plug);
 
-        home.addCommand(new SwitchOnCommand(light));
-        home.addCommand(new SwitchOffCommand(light));
+        home.addCommand(new SwitchOnCommand(light),"Switch On Light");
+        home.addCommand(new SwitchOffCommand(light), "Switch off light");
 
-        home.addCommand(new SwitchOnCommand(plug));
-        home.addCommand(new SwitchOffCommand(plug));
+        home.addCommand(new SwitchOnCommand(plug), "Switch On Plug");
+        home.addCommand(new SwitchOffCommand(plug), "Switch Off Plug");
         
 
         MainApp.setScene("SmartHomeMain", home);
