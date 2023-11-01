@@ -44,11 +44,11 @@ public class MainApp extends Application{
         home.addDevice(light);
         home.addDevice(plug);
 
-        home.addCommand(new SwitchOnCommand(light));
-        home.addCommand(new SwitchOffCommand(light));
+        home.addCommand("Switch on light", new SwitchOnCommand(light));
+        home.addCommand("Switch off light", new SwitchOffCommand(light));
 
-        home.addCommand(new SwitchOnCommand(plug));
-        home.addCommand(new SwitchOffCommand(plug));
+        home.addCommand("Switch on plug", new SwitchOnCommand(plug));
+        home.addCommand("Switch off plug", new SwitchOffCommand(plug));
         
 
         MainApp.setScene("SmartHomeMain", home);
@@ -90,6 +90,8 @@ public class MainApp extends Application{
         @SuppressWarnings("unchecked")
         Controller<T> controller = (Controller<T>) loader.getController();
         controller.setModel(model);
+
+        models.put(fxml, model);
 
         scene.setRoot(root);
     }

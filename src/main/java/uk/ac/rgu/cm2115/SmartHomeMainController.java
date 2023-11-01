@@ -1,5 +1,7 @@
 package uk.ac.rgu.cm2115;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -47,15 +49,19 @@ public class SmartHomeMainController extends Controller<Home>{
 
         // this.hboxRoutines.getChildren().add(testButton);
 
+        String[] labels = model.getCommandLabels();
         Command[] commands = model.getCommands();
 
         for(int i=0;i<commands.length;i++){
             if(commands[i] != null){
-                Button btn = new Button(commands[i].toString());
+                Button btn = new Button(labels[i]);
+                Command command = commands[i];
+                btn.setOnAction((event) -> {
+                    command.execute();
+                });
                 this.hboxRoutines.getChildren().add(btn);
             }
         }
-
     }
 
     @FXML
@@ -65,6 +71,11 @@ public class SmartHomeMainController extends Controller<Home>{
         if(device != null){
             this.lblStatus.setText(device.getStatus());
         }
+    }
+
+    @FXML
+    private void btnAddRoutineClick() throws IOException{
+        MainApp.setScene("SmartHomeRoutine", this.model);
     }
 
     

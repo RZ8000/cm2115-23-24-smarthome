@@ -11,10 +11,12 @@ public class Home {
 
     Device[] devices;
     Command[] commands;
+    String[] commandLabels;
 
     public Home(){
         this.devices = new Device[5];
         this.commands = new Command[10];
+        this.commandLabels = new String[10];
     }
 
     public void addDevice(Device device){
@@ -26,13 +28,27 @@ public class Home {
         }
     }
 
-    public void addCommand(Command command){
+    public void addCommand(String label, Command command){
         for(int i=0;i<this.commands.length;i++){
             if(commands[i] == null){
                 commands[i] = command;
+                commandLabels[i] = label;
                 break;
             }
         }
+    }
+
+    public Command getCommand(String label){
+        for(int i=0;i<this.commandLabels.length;i++){
+            if(commandLabels[i] != null && commandLabels[i].equalsIgnoreCase(label)){
+                return this.commands[i];
+            }
+        }
+        return null;
+    }
+
+    public String[] getCommandLabels(){
+        return this.commandLabels;
     }
 
     public Command[] getCommands(){
