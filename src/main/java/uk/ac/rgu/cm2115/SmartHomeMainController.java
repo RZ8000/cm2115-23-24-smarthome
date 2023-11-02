@@ -50,7 +50,7 @@ public class SmartHomeMainController extends Controller<Home>{
 
         // this.hboxRoutines.getChildren().add(testButton);
 
-        String[] labels = model.getCommandLabels();
+
         Command[] commands = model.getCommands();
 
         for(int i=0;i<commands.length;i++){
@@ -62,10 +62,7 @@ public class SmartHomeMainController extends Controller<Home>{
                 });
                 this.hboxRoutines.getChildren().add(btn);
 
-                Command command = commands[i];
-                btn.setOnAction((event) -> {
-                    command.execute();
-                });
+    
             }
         }
     }

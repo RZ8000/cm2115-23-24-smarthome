@@ -16,9 +16,5 @@ public abstract class Device {
         return this.name + " " + this.getClass().getSimpleName();
     }
 
-<<<<<<< HEAD
-    public abstract String getStatus();
-=======
     public abstract String getStatus(); 
->>>>>>> 914b944814597548ccbfc984ece09c743977cb1f
 }

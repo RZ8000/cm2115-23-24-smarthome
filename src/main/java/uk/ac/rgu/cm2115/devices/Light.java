@@ -54,9 +54,7 @@ public class Light extends Device implements Switchable, Dimmable{
         return this.name + " is " + status + " (level " + this.level + ")";
     }
 
-    public String getStatus() {
-        return "light is " + this.on + " and level is" + this.level;
-    }
+    
 
  
 
