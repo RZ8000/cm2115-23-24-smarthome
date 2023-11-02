@@ -35,6 +35,7 @@ public class SmartHomeMainController extends Controller<Home>{
         this.model = model;
 
         Device[] devices = model.getDevices();
+        String[] labels = model.getCommandLabels();
 
         for(int i=0;i<devices.length;i++){
             if(devices[i] != null){
@@ -60,6 +61,11 @@ public class SmartHomeMainController extends Controller<Home>{
                     command.execute();
                 });
                 this.hboxRoutines.getChildren().add(btn);
+
+                Command command = commands[i];
+                btn.setOnAction((event) -> {
+                    command.execute();
+                });
             }
         }
     }

@@ -22,8 +22,17 @@ public class Home {
     }
 
     private Home(){
+    String[] commandLabels;
+
+    public String[] getCommandLabels() {
+        return commandLabels;
+    }
+
+
+    public Home(){
         this.devices = new Device[5];
         this.commands = new Command[10];
+        this.commandLabels = new String[10];
         this.commandLabels = new String[10];
     }
 
@@ -37,6 +46,7 @@ public class Home {
     }
 
     public void addCommand(String label, Command command){
+    public void addCommand(Command command, String commandLabel){
         for(int i=0;i<this.commands.length;i++){
             if(commands[i] == null){
                 commands[i] = command;
@@ -59,11 +69,25 @@ public class Home {
         return this.commandLabels;
     }
 
+
     public Command[] getCommands(){
         return this.commands;
+    }
+
+    public Command getCommand(String Label){
+        for (int i=0;i<this.commandLabels.length;i++) {
+            if (commandLabels != null && commandLabels[i].equalsIgnoreCase(Label)) {
+                return this.commands[i];
+            }
+        }
+        return null;
     }
 
     public Device[] getDevices(){
         return this.devices;
     }
+
+    
+    
+
 }
