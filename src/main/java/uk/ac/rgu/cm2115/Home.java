@@ -12,8 +12,16 @@ public class Home {
     Device[] devices;
     Command[] commands;
     String[] commandLabels;
+    private static Home instance;
 
-    public Home(){
+    public static Home getInstance() {
+        if (instance == null) {
+            instance = new Home();
+        }
+        return instance;
+    }
+
+    private Home(){
         this.devices = new Device[5];
         this.commands = new Command[10];
         this.commandLabels = new String[10];
