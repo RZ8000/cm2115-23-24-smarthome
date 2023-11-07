@@ -1,5 +1,8 @@
 package uk.ac.rgu.cm2115.devices;
 
+import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
+import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
+
 public class SmartPlug extends Device implements Switchable {
     
     private boolean on;
@@ -30,4 +33,18 @@ public class SmartPlug extends Device implements Switchable {
         return this.name + " is " + status;
     }
 
+    @Override
+    public void accept(DeviceTypeVisitor visitor) {
+        visitor.visit(this, this.name);
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public String getType(){
+        return "Generic smart plug";
+    }
 }

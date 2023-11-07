@@ -36,7 +36,7 @@ public class MainApp extends Application{
     @Override
     public void start(Stage stage) throws IOException {
 
-        Home home = new Home();
+        Home home = Home.getInstance();
 
         Light light = new Light("Living room");
         SmartPlug plug = new SmartPlug("Kettle");
@@ -44,11 +44,16 @@ public class MainApp extends Application{
         home.addDevice(light);
         home.addDevice(plug);
 
-        home.addCommand("Switch on light", new SwitchOnCommand(light));
-        home.addCommand("Switch off light", new SwitchOffCommand(light));
+        //home.runDiagnostics();
 
-        home.addCommand("Switch on plug", new SwitchOnCommand(plug));
-        home.addCommand("Switch off plug", new SwitchOffCommand(plug));
+        /* previous code for adding commands - but superseded by advanced
+         * Visitor implementation
+         */
+        // home.addCommand("Switch on light", light::switchOn);
+        // home.addCommand("Switch off light", light::switchOff);
+
+        // home.addCommand("Switch on plug", plug::switchOn);
+        // home.addCommand("Switch off plug", plug::switchOff);
         
 
         MainApp.setScene("SmartHomeMain", home);

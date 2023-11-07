@@ -1,5 +1,8 @@
 package uk.ac.rgu.cm2115.devices;
 
+import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
+import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
+
 public abstract class Device {
     
     protected String name;
@@ -17,4 +20,19 @@ public abstract class Device {
     }
 
     public abstract String getStatus();
+
+    /**
+     * Accept visitor for concrete devices - used for diagnostics implementation
+     * @param visitor
+     */
+    public abstract void accept(DeviceVisitor visitor);
+
+    /**
+     * Accept visitor for Device Types, e.g. Switchable etc. - used for automated command
+     * adding implementation
+     * @param visitor
+     */
+    public abstract void accept(DeviceTypeVisitor visitor);
+
+    public abstract String getType();
 }

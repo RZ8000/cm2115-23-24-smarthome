@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import uk.ac.rgu.cm2115.commands.Command;
+import uk.ac.rgu.cm2115.commands.RoutineCommand;
 
 public class SmartHomeRoutineController extends Controller<Home> {
 
@@ -46,18 +47,21 @@ public class SmartHomeRoutineController extends Controller<Home> {
         name.showAndWait();
 
         String routineName = name.getEditor().getText();
+        
+        RoutineStrategy reverse = (commands) -> {
+            for(int i=commands.length - 1; i>=0; i--){
+                if(commands[i] != null){
+                    commands[i].execute();
+                }
+            }
+        };
 
         if (routineName != null && !routineName.equals("")) {
-            Command command = () -> {
-                for(String label : this.lstRoutine.getItems()){
-                    Command c = this.model.getCommand(label);
-                    if(c != null){
-                        c.execute();
-                    }
-                }
-            };
-
-            this.model.addCommand(routineName, command);
+            RoutineCommand routineCommand = new RoutineCommand(reverse);
+            for(String commandName : this.lstRoutine.getItems()){
+                routineCommand.addCommand(this.model.getCommand(commandName));
+            }
+            this.model.addCommand(routineName, routineCommand);
 
             
         }

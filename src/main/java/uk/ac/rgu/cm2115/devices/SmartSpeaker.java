@@ -1,5 +1,8 @@
 package uk.ac.rgu.cm2115.devices;
 
+import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
+import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
+
 public class SmartSpeaker extends Device implements Playable, Adjustable {
 
     private boolean playing;
@@ -50,5 +53,22 @@ public class SmartSpeaker extends Device implements Playable, Adjustable {
 
         return playingMsg;
     }
+
+    @Override
+    public void accept(DeviceTypeVisitor visitor) {
+        visitor.visit((Adjustable)this, this.name);
+        visitor.visit((Playable)this, this.name);
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public String getType(){
+        return "Generic smart speaker";
+    }
+
     
 }

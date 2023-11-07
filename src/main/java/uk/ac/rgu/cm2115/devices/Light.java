@@ -1,5 +1,8 @@
 package uk.ac.rgu.cm2115.devices;
 
+import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
+import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
+
 public class Light extends Device implements Switchable, Dimmable{
     
     private boolean on;
@@ -50,5 +53,28 @@ public class Light extends Device implements Switchable, Dimmable{
         }
 
         return this.name + " is " + status + " (level " + this.level + ")";
+    }
+
+    @Override
+    public void accept(DeviceTypeVisitor visitor) {
+        /* Because a Light is both Switchable and Dimmable, we need two 
+         * calls to visitor.visit, with a cast to disambiguate which method
+         * we're actually calling
+         */
+        visitor.visit((Switchable)this, this.name);
+        visitor.visit((Dimmable)this, this.name);
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
+     * Added to allow sub-types of light to be created in factories
+     * @return
+     */
+    public String getType(){
+        return "Generic light";
     }
 }

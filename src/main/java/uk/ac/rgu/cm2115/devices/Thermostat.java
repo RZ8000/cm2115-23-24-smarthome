@@ -1,5 +1,8 @@
 package uk.ac.rgu.cm2115.devices;
 
+import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
+import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
+
 public class Thermostat extends Device implements Adjustable{
     
     private int temperature;
@@ -25,5 +28,20 @@ public class Thermostat extends Device implements Adjustable{
     @Override
     public String getStatus(){
         return this.name + " is set to temperature " + this.temperature;
+    }
+
+    @Override
+    public void accept(DeviceTypeVisitor visitor) {
+        visitor.visit(this, this.name);
+    }
+
+    @Override
+    public void accept(DeviceVisitor visitor) {
+        visitor.visit(this);
+    }
+
+    @Override
+    public String getType(){
+        return "Generic thermostat";
     }
 }
