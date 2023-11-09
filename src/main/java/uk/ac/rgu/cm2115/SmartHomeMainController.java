@@ -1,6 +1,10 @@
 package uk.ac.rgu.cm2115;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -34,12 +38,12 @@ public class SmartHomeMainController extends Controller<Home>{
     public void setModel(Home model) {
         this.model = model;
 
-        Device[] devices = model.getDevices();
-        String[] labels = model.getCommandLabels();
+        ArrayList<Device> devices = model.getDevices();
+        Set<String> labels = model.getCommandLabels();
 
-        for(int i=0;i<devices.length;i++){
-            if(devices[i] != null){
-                this.lstDevices.getItems().add(devices[i]);
+        for(int i=0;i<devices.size();i++){
+            if(devices.get(i) != null){
+                this.lstDevices.getItems().add(devices.get(i));
             }
         }
 
@@ -51,12 +55,12 @@ public class SmartHomeMainController extends Controller<Home>{
         // this.hboxRoutines.getChildren().add(testButton);
 
 
-        Command[] commands = model.getCommands();
+        Map<String, Command> commands = model.getCommands();
 
-        for(int i=0;i<commands.length;i++){
-            if(commands[i] != null){
-                Button btn = new Button(labels[i]);
-                Command command = commands[i];
+        for(String s: commands.keySet()){
+            if(commands.get(s) != null){
+                Button btn = new Button(s);
+                Command command = commands.get(s);
                 btn.setOnAction((event) -> {
                     command.execute();
                 });
