@@ -1,6 +1,6 @@
 package uk.ac.rgu.cm2115.devices;
 
-public abstract class Device {
+public abstract class Device implements Comparable<Device>{
     
     protected String name;
 
@@ -17,4 +17,8 @@ public abstract class Device {
     }
 
     public abstract String getStatus(); 
+
+    public int compareTo(Device other) {
+        return this.name.toLowerCase().compareTo(other.name.toLowerCase());
+    }
 }
