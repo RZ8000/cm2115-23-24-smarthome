@@ -1,22 +1,21 @@
 package uk.ac.rgu.cm2115;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.TextAlignment;
 import uk.ac.rgu.cm2115.commands.Command;
 import uk.ac.rgu.cm2115.devices.Device;
-import uk.ac.rgu.cm2115.devices.Thermostat;
 import uk.ac.rgu.cm2115.devices.diagnostics.DeviceDiagnosticsVisitor;
 import uk.ac.rgu.cm2115.devices.factories.AbstractDeviceFactory;
 import uk.ac.rgu.cm2115.devices.factories.AmazonDeviceFactory;
@@ -46,17 +45,19 @@ public class SmartHomeMainController extends Controller<Home> {
     @FXML
     private ComboBox<DeviceType> comboDeviceType;
 
+    @FXML
+    private TextField txtFilter;
+
+    @FXML
+    private Button btnSort;
+
+    private boolean sortedAZ = false;
+
     @Override
     public void setModel(Home model) {
         this.model = model;
 
-        Device[] devices = model.getDevices();
-
-        for (int i = 0; i < devices.length; i++) {
-            if (devices[i] != null) {
-                this.lstDevices.getItems().add(devices[i]);
-            }
-        }
+        this.lstDevices.getItems().addAll(this.model.getDevices());
 
         // code to test adding a new button below
         // Button testButton = new Button("Click to test");
@@ -65,28 +66,25 @@ public class SmartHomeMainController extends Controller<Home> {
 
         // this.hboxRoutines.getChildren().add(testButton);
 
-        String[] labels = model.getCommandLabels();
-        Command[] commands = model.getCommands();
+        Map<String, Command> commands = model.getCommands();
 
-        for (int i = 0; i < commands.length; i++) {
-            if (commands[i] != null) {
-                Button btn = new Button(labels[i]);
-                btn.setWrapText(true);
-                Command command = commands[i];
-                btn.setOnAction((event) -> {
-                    command.execute();
-                });
-                this.hboxRoutines.getChildren().add(btn);
-            }
+        for (String label : commands.keySet()) {
+            Button btn = new Button(label);
+            btn.setWrapText(true);
+            Command command = commands.get(label);
+            btn.setOnAction((event) -> {
+                command.execute();
+            });
+            this.hboxRoutines.getChildren().add(btn);
         }
 
         this.comboFactory.getItems().add(new AppleDeviceFactory());
         this.comboFactory.getItems().add(new AmazonDeviceFactory());
 
-        this.comboDeviceType.getItems().addAll(DeviceType.LIGHT, 
-                                            DeviceType.SMART_PLUG, 
-                                            DeviceType.SMART_SPEAKER, 
-                                            DeviceType.THERMOSTAT);
+        this.comboDeviceType.getItems().addAll(DeviceType.LIGHT,
+                DeviceType.SMART_PLUG,
+                DeviceType.SMART_SPEAKER,
+                DeviceType.THERMOSTAT);
     }
 
     @FXML
@@ -114,7 +112,7 @@ public class SmartHomeMainController extends Controller<Home> {
     }
 
     @FXML
-    private void btnAddDeviceOnClick() throws IOException{
+    private void btnAddDeviceOnClick() throws IOException {
         AbstractDeviceFactory factory = this.comboFactory.getSelectionModel().getSelectedItem();
         DeviceType type = this.comboDeviceType.getSelectionModel().getSelectedItem();
 
@@ -128,7 +126,7 @@ public class SmartHomeMainController extends Controller<Home> {
 
             String deviceName = name.getEditor().getText();
 
-            if(deviceName == null || deviceName.equals("")){
+            if (deviceName == null || deviceName.equals("")) {
                 deviceName = "New device";
             }
 
@@ -154,4 +152,36 @@ public class SmartHomeMainController extends Controller<Home> {
         }
     }
 
+    @FXML
+    private void txtFilterKeyTyped() {
+
+        String input = this.txtFilter.getText();
+        List<Device> devices = this.model.getDevices();
+
+        if (input != null && !input.equals("")) {
+
+            devices = devices.stream()
+                    .filter(
+                        (d) -> d.getName()
+                                .toLowerCase()
+                                .startsWith(input.toLowerCase())
+                    ).collect(Collectors.toList());
+        }
+        this.lstDevices.getItems().clear();
+        this.lstDevices.getItems().addAll(devices);
+    }
+
+    @FXML
+    private void btnSortClicked(){
+        if(this.sortedAZ){
+            this.lstDevices.getItems().sort(Device::compareReverse);
+            this.btnSort.setText("Sort A-Z");
+        }else{
+            Collections.sort(this.lstDevices.getItems());
+            this.btnSort.setText("Sort Z-A");
+        }
+
+        this.sortedAZ = !this.sortedAZ;
+        
+    }
 }

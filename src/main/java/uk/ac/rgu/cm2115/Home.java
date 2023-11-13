@@ -1,5 +1,11 @@
 package uk.ac.rgu.cm2115;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import uk.ac.rgu.cm2115.commands.Command;
 import uk.ac.rgu.cm2115.devices.Device;
 import uk.ac.rgu.cm2115.devices.diagnostics.DeviceDiagnosticsVisitor;
@@ -11,9 +17,8 @@ import uk.ac.rgu.cm2115.devices.visitor.AddCommandVisitor;
  */
 public class Home {
 
-    Device[] devices;
-    Command[] commands;
-    String[] commandLabels;
+    private List<Device> devices;
+    private Map<String, Command> commands;
 
     private AddCommandVisitor addCommandVisitor;
 
@@ -27,40 +32,26 @@ public class Home {
     }
 
     private Home(){
-        this.devices = new Device[5];
-        this.commands = new Command[10];
-        this.commandLabels = new String[10];
+        this.devices = new ArrayList<>();
+        this.commands = new HashMap<>();
 
         this.addCommandVisitor = new AddCommandVisitor(this);
     }
 
     public void addDevice(Device device){
-        for(int i=0;i<this.devices.length;i++){
-            if(this.devices[i] == null){
-                this.devices[i] = device;
-                device.accept(addCommandVisitor);
-                break;
-            }
+        if(device != null){
+            this.devices.add(device);
+            device.accept(addCommandVisitor);
         }
     }
 
     public void addCommand(String label, Command command){
-        for(int i=0;i<this.commands.length;i++){
-            if(commands[i] == null){
-                commands[i] = command;
-                commandLabels[i] = label;
-                break;
-            }
-        }
+
+        this.commands.put(label, command);
     }
 
     public Command getCommand(String label){
-        for(int i=0;i<this.commandLabels.length;i++){
-            if(commandLabels[i] != null && commandLabels[i].equalsIgnoreCase(label)){
-                return this.commands[i];
-            }
-        }
-        return null;
+        return this.commands.get(label);
     }
 
     public void runDiagnostics(){
@@ -73,15 +64,15 @@ public class Home {
         }
     }
 
-    public String[] getCommandLabels(){
-        return this.commandLabels;
+    public Set<String> getCommandLabels(){
+        return this.commands.keySet();
     }
 
-    public Command[] getCommands(){
+    public Map<String, Command> getCommands(){
         return this.commands;
     }
 
-    public Device[] getDevices(){
+    public List<Device> getDevices(){
         return this.devices;
     }
 }

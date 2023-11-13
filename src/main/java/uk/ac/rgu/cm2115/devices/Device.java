@@ -3,7 +3,7 @@ package uk.ac.rgu.cm2115.devices;
 import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
 import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
 
-public abstract class Device {
+public abstract class Device implements Comparable<Device> {
     
     protected String name;
 
@@ -35,4 +35,13 @@ public abstract class Device {
     public abstract void accept(DeviceTypeVisitor visitor);
 
     public abstract String getType();
+
+    @Override
+    public int compareTo(Device other){
+        return this.name.toLowerCase().compareTo(other.name.toLowerCase());
+    }
+
+    public static int compareReverse(Device firstDevice, Device secondDevice){
+        return firstDevice.compareTo(secondDevice) * -1;
+    }
 }

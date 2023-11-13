@@ -2,13 +2,9 @@ package uk.ac.rgu.cm2115;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
-import uk.ac.rgu.cm2115.commands.Command;
 import uk.ac.rgu.cm2115.commands.RoutineCommand;
 
 public class SmartHomeRoutineController extends Controller<Home> {
