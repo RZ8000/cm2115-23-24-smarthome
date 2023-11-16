@@ -4,6 +4,8 @@ import uk.ac.rgu.cm2115.devices.diagnostics.DeviceVisitor;
 import uk.ac.rgu.cm2115.devices.visitor.DeviceTypeVisitor;
 
 public class Thermostat extends Device implements Adjustable{
+    private int temp;
+
     
     private int temperature;
 
@@ -15,21 +17,20 @@ public class Thermostat extends Device implements Adjustable{
     @Override
     public void turnUp(){
         System.out.println("Thermostat is turned up");
-        this.temperature++;
+        this.temp++;  
     }
 
     @Override
     public void turnDown(){
         System.out.println("Thermostat is turned down");
-        this.temperature--;
-        // could also include code here to stop the thermostat going below a certain level
+        this.temp--;
     }
 
-    @Override
-    public String getStatus(){
-        return this.name + " is set to temperature " + this.temperature;
+    public String getStatus() {
+        return "Thermostat is" + this.temp; 
     }
 
+<<<<<<< HEAD
     @Override
     public void accept(DeviceTypeVisitor visitor) {
         visitor.visit(this, this.name);
@@ -44,4 +45,7 @@ public class Thermostat extends Device implements Adjustable{
     public String getType(){
         return "Generic thermostat";
     }
+=======
+
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 }

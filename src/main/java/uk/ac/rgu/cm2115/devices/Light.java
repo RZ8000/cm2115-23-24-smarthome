@@ -30,12 +30,14 @@ public class Light extends Device implements Switchable, Dimmable{
 
     @Override
     public void dimUp(){
+        this.level ++;
         System.out.println("Light is dimmed up");
         this.level++;
     }
 
     @Override
     public void dimDown(){
+        this.level -=1;
         System.out.println("Light is dimmed down");
         this.level--;
 
@@ -55,6 +57,7 @@ public class Light extends Device implements Switchable, Dimmable{
         return this.name + " is " + status + " (level " + this.level + ")";
     }
 
+<<<<<<< HEAD
     @Override
     public void accept(DeviceTypeVisitor visitor) {
         /* Because a Light is both Switchable and Dimmable, we need two 
@@ -77,4 +80,11 @@ public class Light extends Device implements Switchable, Dimmable{
     public String getType(){
         return "Generic light";
     }
+=======
+    
+
+ 
+
+    
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 }

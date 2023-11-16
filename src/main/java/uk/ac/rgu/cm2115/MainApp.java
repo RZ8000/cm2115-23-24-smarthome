@@ -44,6 +44,7 @@ public class MainApp extends Application{
         home.addDevice(light);
         home.addDevice(plug);
 
+<<<<<<< HEAD
         //home.runDiagnostics();
 
         /* previous code for adding commands - but superseded by advanced
@@ -54,6 +55,13 @@ public class MainApp extends Application{
 
         // home.addCommand("Switch on plug", plug::switchOn);
         // home.addCommand("Switch off plug", plug::switchOff);
+=======
+        home.addCommand("Switch on light", light::switchOn);
+        home.addCommand("Switch off light",light::switchOff);
+
+        home.addCommand("Switch on plug", plug::switchOn);
+        home.addCommand("Switch off plug", plug::switchOff);
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
         
 
         MainApp.setScene("SmartHomeMain", home);

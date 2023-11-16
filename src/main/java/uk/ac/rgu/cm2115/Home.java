@@ -2,7 +2,10 @@ package uk.ac.rgu.cm2115;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 import java.util.Map;
 import java.util.Set;
 
@@ -17,6 +20,7 @@ import uk.ac.rgu.cm2115.devices.visitor.AddCommandVisitor;
  */
 public class Home {
 
+<<<<<<< HEAD
     private List<Device> devices;
     private Map<String, Command> commands;
 
@@ -26,11 +30,22 @@ public class Home {
 
     public static Home getInstance(){
         if(instance == null){
+=======
+    private ArrayList<Device> devices;
+    private static Home instance;
+    Map<String, Command> commands = new HashMap<>();
+
+    
+
+    public static Home getInstance() {
+        if (instance == null) {
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
             instance = new Home();
         }
         return instance;
     }
 
+<<<<<<< HEAD
     private Home(){
         this.devices = new ArrayList<>();
         this.commands = new HashMap<>();
@@ -68,11 +83,67 @@ public class Home {
         return this.commands.keySet();
     }
 
+=======
+
+    
+
+
+//     private Home(){
+//     String[] commandLabels;
+// }
+
+    public Set<String> getCommandLabels() {
+        return commands.keySet();
+    }
+
+
+    private Home(){
+        this.devices = new ArrayList<>();
+        this.commands = new HashMap<>();
+        
+    }
+
+    public void addDevice(Device device){
+        this.devices.add(device);
+    }
+
+    
+    // public void addCommand(String commandLabel, Command command){
+    //     for(int i=0;i<this.commands.length;i++){
+    //         if(commands[i] == null){
+    //             commands[i] = command;
+    //             commandLabels[i] = commandLabel;
+    //             break;
+    //         }
+    //     }
+    //     labelMap.put(command, "word");
+    // }
+
+    public Command getCommand(String label){
+        return commands.get(label);
+    }
+
+
+
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
     public Map<String, Command> getCommands(){
         return this.commands;
     }
 
+<<<<<<< HEAD
     public List<Device> getDevices(){
+=======
+    
+
+    public ArrayList<Device> getDevices(){
+>>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
         return this.devices;
     }
+
+    public void addCommand(String commandLabel, Command command) {
+        commands.put(commandLabel, command);
+    }   
+    
+    
+
 }
