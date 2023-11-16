@@ -10,6 +10,7 @@ import uk.ac.rgu.cm2115.commands.Command;
 import uk.ac.rgu.cm2115.devices.Device;
 import uk.ac.rgu.cm2115.devices.diagnostics.DeviceDiagnosticsVisitor;
 import uk.ac.rgu.cm2115.devices.visitor.AddCommandVisitor;
+import uk.ac.rgu.cm2115.exceptions.CommandNotFoundException;
 
 /**
  * Class to act as a hub for the smarthome
@@ -65,8 +66,14 @@ public class Home {
     //     labelMap.put(command, "word");
     // }
 
-    public Command getCommand(String label){
-        return commands.get(label);
+    public Command getCommand(String label) throws CommandNotFoundException{
+        Command c =  commands.get(label);
+        if (c == null) {
+            throw new CommandNotFoundException(label);
+        }
+        return c;
+
+
     }
 
 

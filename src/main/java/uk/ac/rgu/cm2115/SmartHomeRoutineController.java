@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 import uk.ac.rgu.cm2115.commands.Command;
 import uk.ac.rgu.cm2115.commands.RoutineCommand;
+import uk.ac.rgu.cm2115.exceptions.CommandNotFoundException;
 
 public class SmartHomeRoutineController extends Controller<Home> {
 
@@ -37,7 +38,7 @@ public class SmartHomeRoutineController extends Controller<Home> {
     }
 
     @FXML
-    private void btnSaveRoutineClick() throws IOException {
+    private void btnSaveRoutineClick() throws IOException, CommandNotFoundException {
         TextInputDialog name = new TextInputDialog();
         name.setContentText("Enter a name for the routine: ");
 
