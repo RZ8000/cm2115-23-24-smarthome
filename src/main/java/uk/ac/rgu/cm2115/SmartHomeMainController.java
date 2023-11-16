@@ -1,17 +1,13 @@
 package uk.ac.rgu.cm2115;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-=======
 import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Set;
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -64,9 +60,7 @@ public class SmartHomeMainController extends Controller<Home> {
     public void setModel(Home model) {
         this.model = model;
 
-<<<<<<< HEAD
         this.lstDevices.getItems().addAll(this.model.getDevices());
-=======
         ArrayList<Device> devices = model.getDevices();
         Set<String> labels = model.getCommandLabels();
 
@@ -75,7 +69,6 @@ public class SmartHomeMainController extends Controller<Home> {
                 this.lstDevices.getItems().add(devices.get(i));
             }
         }
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 
         // code to test adding a new button below
         // Button testButton = new Button("Click to test");
@@ -84,18 +77,6 @@ public class SmartHomeMainController extends Controller<Home> {
 
         // this.hboxRoutines.getChildren().add(testButton);
 
-<<<<<<< HEAD
-        Map<String, Command> commands = model.getCommands();
-
-        for (String label : commands.keySet()) {
-            Button btn = new Button(label);
-            btn.setWrapText(true);
-            Command command = commands.get(label);
-            btn.setOnAction((event) -> {
-                command.execute();
-            });
-            this.hboxRoutines.getChildren().add(btn);
-=======
 
         Map<String, Command> commands = model.getCommands();
 
@@ -110,7 +91,6 @@ public class SmartHomeMainController extends Controller<Home> {
 
     
             }
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
         }
 
         this.comboFactory.getItems().add(new AppleDeviceFactory());

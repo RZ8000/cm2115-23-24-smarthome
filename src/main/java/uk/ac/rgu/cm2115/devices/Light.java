@@ -57,7 +57,6 @@ public class Light extends Device implements Switchable, Dimmable{
         return this.name + " is " + status + " (level " + this.level + ")";
     }
 
-<<<<<<< HEAD
     @Override
     public void accept(DeviceTypeVisitor visitor) {
         /* Because a Light is both Switchable and Dimmable, we need two 
@@ -80,11 +79,4 @@ public class Light extends Device implements Switchable, Dimmable{
     public String getType(){
         return "Generic light";
     }
-=======
-    
-
- 
-
-    
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 }

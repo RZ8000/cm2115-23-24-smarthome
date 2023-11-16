@@ -2,10 +2,7 @@ package uk.ac.rgu.cm2115;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 import java.util.Map;
 import java.util.Set;
 
@@ -20,70 +17,19 @@ import uk.ac.rgu.cm2115.devices.visitor.AddCommandVisitor;
  */
 public class Home {
 
-<<<<<<< HEAD
-    private List<Device> devices;
-    private Map<String, Command> commands;
-
-    private AddCommandVisitor addCommandVisitor;
-
-    private static Home instance = null;
-
-    public static Home getInstance(){
-        if(instance == null){
-=======
     private ArrayList<Device> devices;
     private static Home instance;
     Map<String, Command> commands = new HashMap<>();
-
+    private AddCommandVisitor addCommandVisitor;
     
 
     public static Home getInstance() {
         if (instance == null) {
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
             instance = new Home();
         }
         return instance;
     }
 
-<<<<<<< HEAD
-    private Home(){
-        this.devices = new ArrayList<>();
-        this.commands = new HashMap<>();
-
-        this.addCommandVisitor = new AddCommandVisitor(this);
-    }
-
-    public void addDevice(Device device){
-        if(device != null){
-            this.devices.add(device);
-            device.accept(addCommandVisitor);
-        }
-    }
-
-    public void addCommand(String label, Command command){
-
-        this.commands.put(label, command);
-    }
-
-    public Command getCommand(String label){
-        return this.commands.get(label);
-    }
-
-    public void runDiagnostics(){
-        DeviceDiagnosticsVisitor visitor = new DeviceDiagnosticsVisitor();
-
-        for(Device device : this.devices){
-            if(device != null){
-                device.accept(visitor);
-            }
-        }
-    }
-
-    public Set<String> getCommandLabels(){
-        return this.commands.keySet();
-    }
-
-=======
 
     
 
@@ -125,18 +71,13 @@ public class Home {
 
 
 
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
     public Map<String, Command> getCommands(){
         return this.commands;
     }
 
-<<<<<<< HEAD
-    public List<Device> getDevices(){
-=======
     
 
     public ArrayList<Device> getDevices(){
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
         return this.devices;
     }
 

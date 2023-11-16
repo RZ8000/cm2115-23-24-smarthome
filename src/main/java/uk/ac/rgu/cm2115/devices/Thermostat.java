@@ -30,7 +30,6 @@ public class Thermostat extends Device implements Adjustable{
         return "Thermostat is" + this.temp; 
     }
 
-<<<<<<< HEAD
     @Override
     public void accept(DeviceTypeVisitor visitor) {
         visitor.visit(this, this.name);
@@ -45,7 +44,4 @@ public class Thermostat extends Device implements Adjustable{
     public String getType(){
         return "Generic thermostat";
     }
-=======
-
->>>>>>> de014216fcd3c36e5d72e9479cfe688c23505302
 }
